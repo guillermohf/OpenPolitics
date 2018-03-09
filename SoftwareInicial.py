@@ -6,11 +6,13 @@ import ListasPeriodicosEncuestas
 import requests
 from bs4 import BeautifulSoup
 import sys
+import xlsxwriter
+#import pypdf
 
 sys.path
-
+tituloVentana = "Buscador de encuestas Pais Posible"
 root = Tk()
-root.title("Buscador de encuestas Pais Posible")
+root.title(tituloVentana)
 frame = Frame(root, width=450, height=550)
 frame.pack()
 image = "logo2x.jpg"
@@ -21,37 +23,34 @@ panel.place(x=25, y=0)
 #sitios Web
 class PeriodicosEncuestas:
     """
-        Periodicos de las encuestas con su metodo definido
+        Periodicos y sus encuestas con su metodo definido
     """
     def __init__(self, Hoy):
         self.Hoy = Hoy
     def Hoy():
-        url = "http://hoy.com.do/encuestas/"
-        url_2 = url + "?poll_page=" + str(2)
-        def get_data_from_url(url):
-            for i in range(106):
-                print(url_2)
-
+        url = "http://hoy.com.do/encuestas/?poll_page=1"
+        #url_2 = url + "?poll_page=" + str(2)
+        #def get_data_from_url(url):
+         #   for i in range(106):
+          #      print(url_2)
         r = requests.get(url)
         soup = BeautifulSoup(r.content, "lxml")
-        TituloNoticia = soup.find_all("strong")
         ResultadosEncuestas = soup.findAll("p", {"class": "titleOnePollGBH"})
         for div in ResultadosEncuestas:
             print("%s" %(div.text))
+        RespuestasEncuestas = soup.select(".wp-polls-ans")
+        for div1 in RespuestasEncuestas:
+            print("%s" %(div1.text))
 
-       
-            #print(item.contents[0].find_all("a", {"class": }))
-        #print("------")
-        #print(ResultadosEncuestas[1])
-    
-hoy_crawl = PeriodicosEncuestas.Hoy()
+
+#hoy_crawl = PeriodicosEncuestas.Hoy()
 
 #opciones de sitios web a buscar
 Hoy = "Hoy"
 Listin_Diario = "Listin Diario*"
 La_Informacion = "La Informacion*"
 Telenoticias = "Telenoticias*"
-El_dinero = "El Dinero*"
+El_dinero = "El Dinero*" 
 Diario_55 = "Diario 55*"
 La_bazuca = "La Bazuca*"
 Primicias = "Primicias*"
@@ -67,7 +66,7 @@ PDF = "PDF*"
 EXCEL = "EXCEL*"
 
 Sitios_web = [
-        Hoy,
+    Hoy,
     Listin_Diario,
     La_Informacion,
     Telenoticias,
@@ -85,7 +84,7 @@ Sitios_web = [
     Noticias_RD
 ]
 
-#
+
 
 class Crawler_Encuestas:
     """
@@ -123,7 +122,7 @@ variable.set(Sitios_web[0]) # valor por default
 w = OptionMenu(root, variable, *Sitios_web)
 w.pack()
 
-probando = "150"
+probando = "5"
 
 #Textos A Mostrar
 Texto1 = Label(root, text="Sitio Web a Buscar: ", font='Helvetica 18 bold')
@@ -132,7 +131,7 @@ Texto2 = Label(root, text="Encuestas Encontradas", font='Helvetica 18 bold')
 Texto2.pack()
 Texto3 = Label(root, text="Mostrar en: ", font='Helvetica 18 bold')
 Texto3.pack()
-Texto5 = ttk.Button(root, text="Buscar", command=Crawler_Encuestas.OutputPDF()).place(x=280, y=500)
+Texto5 = ttk.Button(root, text="Buscar", command=PeriodicosEncuestas.Hoy()).place(x=280, y=500)
 Texto6 = Label(root, text=probando)
 Texto6.pack()
 #Posiciones
