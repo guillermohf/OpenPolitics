@@ -22,9 +22,6 @@ panel.place(x=25, y=0)
 
 #sitios Web
 class PeriodicosEncuestas:
-    """
-        Periodicos y sus encuestas con su metodo definido
-    """
     def __init__(self, Hoy):
         self.Hoy = Hoy
     def Hoy():
