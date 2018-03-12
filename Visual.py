@@ -4,6 +4,9 @@ import requests
 from bs4 import BeautifulSoup
 from PIL import ImageTk, Image
 import xlsxwriter
+import numpy as np
+import pandas as pd
+import tensorflow as tf
 
 root = Tk()
 root.title("Buscador de encuestas Pais Posible")
@@ -76,15 +79,16 @@ class Crawler_Encuestas:
         self.Output = Output
 
     def OutputPDF():
-
-    def OutputEXCEL()
-        try:
-            workbook = xlsxwriter.Workbook('hello.xlsx')
-            worksheet = workbook.add_worksheet()
-            worksheet.write('A1', 'Hello world')
-            workbook.close()
-        except ValueError:
         pass
+
+    #def OutputEXCEL()
+    #    try:
+    #        workbook = xlsxwriter.Workbook('hello.xlsx')
+    #        worksheet = workbook.add_worksheet()
+    #        worksheet.write('A1', 'Hello world')
+    #        workbook.close()
+    #    except ValueError:
+    #    pass
 
 variable = StringVar(root)
 variable.set(Sitios_web[0]) # valor por default

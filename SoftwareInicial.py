@@ -9,35 +9,67 @@ import sys
 import xlsxwriter
 #import pypdf
 
-sys.path
 tituloVentana = "Buscador de encuestas Pais Posible"
-root = Tk()
+""""root = Tk()
 root.title(tituloVentana)
 frame = Frame(root, width=450, height=550)
 frame.pack()
 image = "logo2x.jpg"
 img = ImageTk.PhotoImage(Image.open(image))
 panel = ttk.Label(root, image = img)
-panel.place(x=25, y=0)
+panel.place(x=25, y=0)"""
+pages = []
+#
+Respuestas1 = []
+Respuestas2 = []
+for i in range(1, 105):
+    url = 'http://hoy.com.do/encuestas/' + "?poll_page=" + str(i)
+    pages.append(url)
+
+class CrawlerRefinadoOOP:
+    def __init__(self,url, Pages, Titulo, Texto, InformacionTitulo, InformacionTexto):
+        self.url = url
+        self.Pages = Pages
+        self.Titulo = Titulo
+        self.Texto = Texto
+        self.InformacionTitulo = InformacionTitulo
+        self.InformacionTexto = InformacionTexto
+
+    def url(self, url):
+    #Funcion para llamar a la url, por motivos del crawler
+        urlTexto = "http://www." + self.url
+    def Item(self, Pages):
+        pass
+
 
 #sitios Web
 class PeriodicosEncuestas:
     def __init__(self, Hoy):
         self.Hoy = Hoy
-    def Hoy():
-        url = "http://hoy.com.do/encuestas/?poll_page=1"
-        #url_2 = url + "?poll_page=" + str(2)
-        #def get_data_from_url(url):
-         #   for i in range(106):
-          #      print(url_2)
-        r = requests.get(url)
-        soup = BeautifulSoup(r.content, "lxml")
+    def HoyTitulo():
+    #def get_data_from_url(url):
+    #   for i in range(106):
+    #      print(url_2)
+    #r = requests.get(pages)
+    for item in pages:
+        page = requests.get(item)
+        soup = BeautifulSoup(page.content, "lxml")
         ResultadosEncuestas = soup.findAll("p", {"class": "titleOnePollGBH"})
-        for div in ResultadosEncuestas:
-            print("%s" %(div.text))
-        RespuestasEncuestas = soup.select(".wp-polls-ans")
-        for div1 in RespuestasEncuestas:
-            print("%s" %(div1.text))
+    for div in ResultadosEncuestas:
+        Respuestas1.append("%s" %(div.text))
+
+    def HoyTexto():
+    for item in pages:
+        page = requests.get(item)
+        soup = BeautifulSoup(page.content, "lxml")
+        return RespuestasEncuestas = soup.select(".wp-polls-ans")
+    for div1 in RespuestasEncuestas:
+        return Respuestas2.append("%s" %(div1.text))
+
+
+SR = PeriodicosEncuestas.HoyTexto()
+
+
 
 
 #hoy_crawl = PeriodicosEncuestas.Hoy()
@@ -63,55 +95,59 @@ PDF = "PDF*"
 EXCEL = "EXCEL*"
 
 Sitios_web = [
-    Hoy,
-    Listin_Diario,
-    La_Informacion,
-    Telenoticias,
-    El_dinero,
-    Diario_55,
-    La_bazuca,
-    Primicias,
-    CDN,
-    El_Informador,
-    El_Nacional,
-    El_Caribe,
-    El_Nuevo_Diario,
-    El_Dia,
-    Diario_Libre,
-    Noticias_RD
+Hoy,
+Listin_Diario,
+La_Informacion,
+Telenoticias,
+El_dinero,
+Diario_55,
+La_bazuca,
+Primicias,
+CDN,
+El_Informador,
+El_Nacional,
+El_Caribe,
+El_Nuevo_Diario,
+El_Dia,
+Diario_Libre,
+Noticias_RD
 ]
 
 
 
 class Crawler_Encuestas:
-    """
-        Esta clase lo que se encargara de llamar al requests y al beautifulsoup
-        que son librerias en python, su funcion es buscar los resultados y el titulo
-        y habra una clase al final que se encargara de hacer un output en excel o pdf
-        o en la misma ventana.
-    """
+"""
+Esta clase lo que se encargara de llamar al requests y al beautifulsoup
+que son librerias en python, su funcion es buscar los resultados y el titulo
+y habra una clase al final que se encargara de hacer un output en excel o pdf
+o en la misma ventana.
+"""
     def __init__(self, Output):
-        self.Output = Output
+    self.Output = Output
 
     def OutputPDF():
-        """
-        Se utilizara la libreria de python llamada pypdf,
-        la cual se basara en la exportacion que el crawler recopilara de la 
-        internet, y lo exportara a excel para una visualizacion mas facil.
-        """
-        pass
+    """
+    Se utilizara la libreria de python llamada pypdf,
+    la cual se basara en la exportacion que el crawler recopilara de la 
+    internet, y lo exportara a excel para una visualizacion mas facil.
+    """
+    pass
     def OutputEXCEL():
-        """
-        Se utilizara el xlsxwriter para el Output de la informacion captada
-        por el crawler, que tambien mostrara graficas.
-        """
-        try:
-            workbook = xlsxwriter.Workbook('hello.xlsx')
-            worksheet = workbook.add_worksheet()
-            worksheet.write('A1', 'Hello world')
-            workbook.close()
-        except ValueError:
-            pass
+    """
+    Se utilizara el xlsxwriter para el Output de la informacion captada
+    por el crawler, que tambien mostrara graficas.
+    """
+    try:
+        workbook = xlsxwriter.Workbook('hi.xlsx')
+        worksheet = workbook.add_worksheet()
+        DataPrueba = (
+        Respuestas1
+        )
+
+    worksheet.write(DataPrueba)
+    workbook.close()
+    except ValueError:
+        pass
 
 variable = StringVar(root)
 variable.set(Sitios_web[0]) # valor por default
@@ -119,7 +155,7 @@ variable.set(Sitios_web[0]) # valor por default
 w = OptionMenu(root, variable, *Sitios_web)
 w.pack()
 
-probando = "5"
+probando = len(SR)
 
 #Textos A Mostrar
 Texto1 = Label(root, text="Sitio Web a Buscar: ", font='Helvetica 18 bold')
@@ -145,8 +181,6 @@ SeleccionMostrar2 = Radiobutton(root, text=EXCEL, variable=v, value=2).place(x=3
 
 #
 ttk.Label(root, textvariable="1").place(x=100, y=430)
-
-
 label = Label(root, text="Version: 0.0.0.1")
 label.pack()
 mainframe = ttk.Frame(root, padding="13 13 12 12")

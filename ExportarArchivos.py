@@ -1,5 +1,5 @@
 import xlsxwriter
-#import pypdf
+import pypdf
 
 class Crawler_Encuestas:
     """
@@ -11,14 +11,14 @@ class Crawler_Encuestas:
     def __init__(self, Output):
         self.Output = Output
 
-    def OutputPDF():
+    def OutputPDF(self):
         """
         Se utilizara la libreria de python llamada pypdf,
         la cual se basara en la exportacion que el crawler recopilara de la 
         internet, y lo exportara a excel para una visualizacion mas facil.
         """
         pass
-    def OutputEXCEL():
+    def OutputEXCEL(self):
         """
         Se utilizara el xlsxwriter para el Output de la informacion captada
         por el crawler, que tambien mostrara graficas.
