@@ -65,6 +65,7 @@ class PeriodicosEncuestas:
         return RespuestasEncuestas = soup.select(".wp-polls-ans")
     for div1 in RespuestasEncuestas:
         return Respuestas2.append("%s" %(div1.text))
+        print(Respuestas1)
 
 
 SR = PeriodicosEncuestas.HoyTexto()
