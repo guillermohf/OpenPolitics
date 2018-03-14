@@ -1,9 +1,3 @@
-from tkinter import *
-from tkinter import ttk
-from PIL import ImageTk, Image
-from __urls import *
-from ElementosEncontrados import *
-#Titulo de la ventana
 tituloVentana = "Crawler Pais Posible"
 root = Tk()
 root.title(tituloVentana)
@@ -21,7 +15,16 @@ variable = StringVar(root)
 variable.set(list(Sitios__web.keys())[0])
 w = OptionMenu(root, variable, *list(Sitios__web.keys()))
 w.pack()
-#keyword
+#usuario
+usuario_ = Entry(root)
+usuario_.pack()
+usuario_.insert(0, "usuario")
+usuario_.place(x=1150, y=75, anchor=CENTER)
+#contrasenna
+contra = Entry(root, show="*", width=15)
+contra.pack()
+contra.insert(0, "Contraseña")
+contra.place(x=1280, y=75, anchor=CENTER)
 IntroducirPalabraBuscar = Entry(root)
 IntroducirPalabraBuscar.pack()
 PalabraIntroducirDemo = "Palabra Busqueda"
@@ -46,5 +49,3 @@ ttk.Label(root, textvariable="1").place(x=100, y=430)
 Version = "0.0.0.2"
 label = Label(root, text=Version)
 label.pack()
-mainframe = ttk.Frame(root)
-root.mainloop()
