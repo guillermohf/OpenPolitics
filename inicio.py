@@ -9,6 +9,7 @@ import sys
 #inner documents imports
 from __urls import *
 from ElementosEncontrados import *
+from UsersAuth import *
 #Booleans
 firstclick = True
 SecondClick = True
@@ -27,9 +28,9 @@ def on_entry_click(event):
     elif ThirdClick:
         ThirdClick = False
         IntroducirPalabraBuscar.delete(0, "end")
-
+#WhiteListURLS.keys())[0]
 def command1():
-    if Usuario.get() == "morrison" and contraseña.get() == "morrison": #Checks whether username and password are correct
+    if Usuario.get() == list(UsersAuth.keys()) and contraseña.get() == list(UsersAuth.values()): 
         root.deiconify() #Unhides the root window
         top.destroy() #Removes the toplevel window
     else:
@@ -53,7 +54,7 @@ AlturaVentana = root.winfo_screenheight()
 AnchoVentanaLogin = root.winfo_screenwidth()/5
 AlturaVentanaLogin = root.winfo_screenheight()/3
 variable = StringVar(root)
-w = OptionMenu(root, variable, *list(Sitios__web.keys()))
+w = OptionMenu(root, variable, *list(WhiteListURLS.keys()))
 Usuario = Entry(top) #usuario
 Usuario.insert(0, "Usuario")
 Usuario.bind('<FocusIn>', on_entry_click)
@@ -85,7 +86,7 @@ coordenada_y = (AlturaVentana/2)
 root.title(tituloVentana)
 top.title(TituloVentanaLogin)
 F.set(PalabraIntroducirDemo)
-variable.set(list(Sitios__web.keys())[0])
+variable.set(list(WhiteListURLS.keys())[0])
 IntroducirPalabraBuscar.insert(0, PalabraIntroducirDemo)
 IntroducirPalabraBuscar.bind('<FocusIn>', on_entry_click)
 #placing
