@@ -1,0 +1,1 @@
+#oracle sql syntax to get all data from the sql

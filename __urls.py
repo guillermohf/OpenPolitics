@@ -6,7 +6,7 @@ WhiteListURLS = {
     'La Bazuca': 'http://www.labazuca.com/encuestas/',
     'El Nacional': 'http://elnacional.com.do/encuestas/'
 }
-
+#url with fake news and to avoid them
 BlackListURLS = {
-    
+
 }

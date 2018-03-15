@@ -1,5 +1,5 @@
 import mysql.connector
-
+#mysql connector for the software to get database
 
 config = {'user': 'root', 'host': '127.0.0.1','database': 'prueba'}
 cnx = mysql.connector.connect(**config)
